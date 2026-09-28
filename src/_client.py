@@ -34,6 +34,19 @@ import argparse
 import os
 import sys
 
+# The SDK's generated modules use PEP 604 annotations (`str | None`) that are
+# evaluated at import time, so `import standardbots` raises
+#   TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
+# on anything older than 3.10 - including the 3.9 that ships with macOS. Say so
+# plainly here rather than letting the traceback point at generated code.
+if sys.version_info < (3, 10):
+    sys.exit(
+        f"\nStandard Bots SDK needs Python 3.10 or newer "
+        f"(this is {sys.version_info.major}.{sys.version_info.minor}).\n"
+        "  macOS ships 3.9, so create the virtualenv with a newer interpreter:\n"
+        "    brew install python@3.12 && python3.12 -m venv .venv\n"
+    )
+
 from standardbots import StandardBotsRobot
 
 

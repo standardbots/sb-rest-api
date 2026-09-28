@@ -36,7 +36,7 @@ You also need the robot's URL. Use whichever form matches how you reach the cont
 
 ## Client setup
 
-Requires **Python 3.7+**.
+Requires **Python 3.10+**. The SDK's generated modules use `X | None` annotations that are evaluated at import time, so older interpreters fail on `import standardbots`. Note that macOS ships Python 3.9 - build the virtualenv with a newer interpreter (`brew install python@3.12`).
 
 Clone the repo:
 
